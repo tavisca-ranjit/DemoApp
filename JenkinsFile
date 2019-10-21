@@ -1,14 +1,21 @@
 pipeline {
-	agent any
-	stages {
-		stage ('build') {
-		 echo 'inside buid stage'
-		}
-		stage ('test: integration-&-quality') {
-			echo 'inside test stage'
-		}
-		stage ('deploy:prod') {
-			echo 'inside deploy stage'
-		}
-	}
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building..'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
+            }
+        }
+    }
 }
