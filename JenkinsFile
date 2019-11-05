@@ -15,7 +15,7 @@ pipeline {
     stages {
         stage('Build') {
         when {
-            expression { "${Environment}" == 'QA' }
+            expression { "${params.Environment}" == 'QA' }
           }
             steps {
                 echo 'Building..'
@@ -23,7 +23,7 @@ pipeline {
         }
         stage('Test') {
           when {
-            expression { "${Environment}" == 'Stage' }
+            expression { "${params.Environment}" == 'Stage' }
           }
             steps {
                 echo 'Testing..'
@@ -31,7 +31,7 @@ pipeline {
         }
         stage('Deploy') {
          when {
-            expression { "${Environment}" == 'Prod' }
+            expression { "${params.Environment}" == 'Prod' }
           }
             steps {
                 echo 'Deploying....'
