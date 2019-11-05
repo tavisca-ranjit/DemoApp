@@ -14,19 +14,25 @@ pipeline {
     }  
     stages {
         stage('Build') {
+        when {
+            expression { "${Environment}" == 'QA' }
+          }
             steps {
                 echo 'Building..'
             }
         }
         stage('Test') {
           when {
-            expression { "${Environment}" == 'QA' }
+            expression { "${Environment}" == 'Stage' }
           }
             steps {
                 echo 'Testing..'
             }
         }
         stage('Deploy') {
+         when {
+            expression { "${Environment}" == 'Prod' }
+          }
             steps {
                 echo 'Deploying....'
             }
