@@ -1,6 +1,13 @@
 pipeline {
     agent any
-
+    parameters{
+      string (
+        name : 'Environment',
+        defaultValue: '',
+        description: ''
+      )         
+     
+    }  
     stages {
         stage('Build') {
             steps {
@@ -8,6 +15,9 @@ pipeline {
             }
         }
         stage('Test') {
+          when {
+            expression { "${Environment}" == 'QA' }
+          }
             steps {
                 echo 'Testing..'
             }
