@@ -1,36 +1,25 @@
 pipeline {
-    agent any
-    parameters{
-      string (
-        name : 'Environment',
-        defaultValue: '',
-        description: ''
-      )         
-     
-    }  
+     agent { label 'master' }
+ 
     stages {
         stage('Build') {
-        when {
-            expression { "${params.Environment}" == 'QA' }
-          }
             steps {
                 echo 'Building..'
             }
         }
-        stage('Test') {
-          when {
-            expression { "${params.Environment}" == 'Stage' }
-          }
+        stage('QA') {
             steps {
-                echo 'Testing..'
+                echo 'Deployed on QA..'
             }
         }
-        stage('Deploy') {
-         when {
-            expression { "${params.Environment}" == 'Prod' }
-          }
+        stage('Stage') {
             steps {
-                echo 'Deploying....'
+                echo 'Deployed on Stage....'
+            }
+        }
+        stage('Prod') {
+            steps {
+                echo 'Deployed on Prod....'
             }
         }
     }
